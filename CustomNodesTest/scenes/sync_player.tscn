@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://dojcqlqfinyqm"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_6kaj5"]
+[ext_resource type="Script" path="res://scripts/custom_synchronizer.gd" id="2_npijx"]
+[ext_resource type="Texture2D" uid="uid://60skqnx4xh11" path="res://assets/png/player.png" id="3_qi7kp"]
+[ext_resource type="Script" path="res://scripts/player_controls.gd" id="4_6knwa"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ws2xm"]
+
+[node name="TestChar" type="CharacterBody2D"]
+script = ExtResource("1_6kaj5")
+
+[node name="CustomSynchronizer" type="Node" parent="."]
+script = ExtResource("2_npijx")
+root_path = NodePath("..")
+properties = PackedStringArray("serverside_pos")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("3_qi7kp")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ws2xm")
+
+[node name="Inputs" type="Node2D" parent="."]
+script = ExtResource("4_6knwa")
+
+[node name="Sync" type="Node" parent="Inputs"]
+script = ExtResource("2_npijx")
+root_path = NodePath("..")
+properties = PackedStringArray("motion", "change_room_pressed")

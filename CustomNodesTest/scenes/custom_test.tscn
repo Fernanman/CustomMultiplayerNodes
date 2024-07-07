@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://di4s4g81qnju5"]
+
+[ext_resource type="PackedScene" uid="uid://h7o46v40d850" path="res://scenes/menu.tscn" id="1_gbeu8"]
+[ext_resource type="Script" path="res://scripts/loadscreen.gd" id="2_5o45q"]
+[ext_resource type="Script" path="res://scripts/custom_player_spawner.gd" id="3_ecl1w"]
+
+[node name="World" type="Node2D"]
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="TestMenu" parent="." instance=ExtResource("1_gbeu8")]
+script = ExtResource("2_5o45q")
+
+[node name="CustomPlayerSpawner" type="Node" parent="."]
+script = ExtResource("3_ecl1w")
+spawn_path = NodePath("../Players")
